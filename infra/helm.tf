@@ -4,7 +4,6 @@ resource "helm_release" "backend" {
   force_update     = true
   namespace        = "backend"
   create_namespace = true
-  timeout = 600
 
   set {
     name  = "image.version"
@@ -47,7 +46,6 @@ resource "helm_release" "frontend" {
   force_update     = true
   namespace        = "frontend"
   create_namespace = true
-  timeout = 600
 
   set {
     name  = "image.version"

@@ -10,11 +10,11 @@ deployment:
   healthCheckPath: /actuator
   resources:
     requests:
-      memory: 400Mi
-      cpu: 100m
+      memory: 512Mi
+      cpu: 250m
     limits:
-      memory: 600Mi
-      cpu: 200m
+      memory: 1024Mi
+      cpu: 500m
 
 ingress:
   prefix: api.
