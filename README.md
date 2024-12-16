@@ -5,7 +5,7 @@ Este repositório contém a solução para o **Desafio DevOps** proposto pela **
 ---
 
 ## 📁 Estrutura do Repositório
-
+```plaintext
 adatech-devops-challenge/
 │
 ├── backend/           # Código fonte do Backend
@@ -29,7 +29,7 @@ adatech-devops-challenge/
 │
 ├── .gitignore         # Arquivos ignorados pelo Git
 └── README.md          # Documentação do projeto
-
+```
 ## 🛠️ Tecnologias Utilizadas
 
 | **Tecnologia**        | **Descrição**                                       |
@@ -113,13 +113,14 @@ frontend_address = "http://ada.development.<unique_id>.brazilsouth.aksapp.io"
 
 ## 🔍 Monitoramento
 
-O Azure Monitor Agent está configurado para enviar logs e métricas diretamente para o Azure Monitor.
-	1.	Acesse o Azure Portal.
-    2.  Navegue até o Cluster Kubernetes
-	3.	Aceda a aba Monitoring:
-        3.1: Insights
-        3.2: Logs
-        3.3: Metrics
+O **Azure Monitor Agent** está configurado para enviar logs e métricas diretamente para o **Azure Monitor**.
+
+1. **Acesse o Azure Portal**.
+2. **Navegue até o Cluster Kubernetes**.
+3. **Aceda a aba Monitoring**:
+   1. **Insights**  
+   2. **Logs**  
+   3. **Metrics**
 
 ## 📜 Licença
 
