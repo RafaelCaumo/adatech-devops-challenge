@@ -6,7 +6,6 @@ Este repositório contém a solução para o **Desafio DevOps** proposto pela **
 
 ## 📁 Estrutura do Repositório
 
-```plaintext
 adatech-devops-challenge/
 │
 ├── backend/           # Código fonte do Backend
@@ -31,20 +30,19 @@ adatech-devops-challenge/
 ├── .gitignore         # Arquivos ignorados pelo Git
 └── README.md          # Documentação do projeto
 
-🛠️ Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
-Tecnologia	Descrição
-Azure Cloud	Plataforma de nuvem para hospedar a infraestrutura
-Terraform	Provisionamento de recursos no Azure
-Kubernetes (AKS)	Orquestração de containers gerenciada no Azure
-Helm	Gerenciamento e deploy de pacotes no Kubernetes
-Docker	Construção e gerenciamento de containers
-Azure Monitor	Monitoramento nativo no Azure
-Bash Scripts	Automação para provisionamento e deploy
+| **Tecnologia**        | **Descrição**                                       |
+|-----------------------|-----------------------------------------------------|
+| **Azure Cloud**       | Plataforma de nuvem para hospedar a infraestrutura  |
+| **Terraform**         | Provisionamento de recursos no Azure                |
+| **Kubernetes (AKS)**  | Orquestração de containers gerenciada no Azure      |
+| **Helm**              | Gerenciamento e deploy de pacotes no Kubernetes     |
+| **Docker**            | Construção e gerenciamento de containers            |
+| **Azure Monitor**     | Monitoramento nativo no Azure                       |
+| **Bash Scripts**      | Automação para provisionamento e deploy             |
 
-⚙️ Configuração do Ambiente
-
-1. Pré-requisitos
+## ⚙️ Pré-requisitos
 
 Instale as seguintes ferramentas no seu ambiente local:
 	•	Azure CLI
@@ -53,73 +51,83 @@ Instale as seguintes ferramentas no seu ambiente local:
 	•	Docker
 	•	Conta ativa no Microsoft Azure.
 
-🚀 Provisionamento da Infraestrutura
-Provisionamento Automático
+## 🚀 Provisionamento da Infraestrutura
+
+### Provisionamento Automático
 
 Execute o script de inicialização:
 
+``` bash
 source ./startup.sh
+```
 
-Provisionamento Manual
+### Provisionamento Manual
 
 1. Login no Azure
 
-Faça login na sua conta Azure:
-
+``` bash
 az login
+```
 
 2. Definir Variáveis
 
-Configure as variáveis necessárias:
-
-export SUBSCRIPTION_ID=<seu_subscription_id>
+``` bash
+export SUBSCRIPTION_ID=<subscription_id>
+export STORAGE_ACCOUNT_NAME=<a-unique-name-here>
 export RESOURCE_GROUP_NAME="rg-tfstate-prod"
-export STORAGE_ACCOUNT_NAME="sttfstate$(shuf -i 1000-9999 -n 1)"
+```
 
 3. Inicialização do Terraform
 
-Acesse a pasta infra/ e inicialize o Terraform:
+Acesse a pasta `infra/` e inicialize o Terraform:
 
+``` bash
 cd infra/
 terraform init
+```
 
 4. Planejamento e Deploy
 
 Planeje e aplique as configurações:
 
+``` bash
 terraform plan
 terraform apply -auto-approve
+```
 
-Provisionamento Automático
+### Provisionamento Automático
 
-Execute o script de inicialização:
-
+``` bash
 source ./startup.sh
+```
 
-🌐 Acesso às Aplicações
+## 🌐 Acesso às Aplicações
 
 Os endpoints das aplicações serão exibidos nos outputs do Terraform após o provisionamento.
 
 Exemplo de Saída:
-
+``` bash
 Outputs:
-
 frontend_address = "http://ada.development.<unique_id>.brazilsouth.aksapp.io"
+```
 
-🔍 Monitoramento
+## 🔍 Monitoramento
 
 O Azure Monitor Agent está configurado para enviar logs e métricas diretamente para o Azure Monitor.
 	1.	Acesse o Azure Portal.
-	2.	Navegue até Monitor > Log Analytics.
-	3.	Consulte as métricas e logs capturados pelo agente.
+    2.  Navegue até o Cluster Kubernetes
+	3.	Aceda a aba Monitoring:
+        3.1: Insights
+        3.2: Logs
+        3.3: Metrics
 
-📜 Licença
+## 📜 Licença
 
 Este projeto está licenciado sob a Licença MIT.
 
-📞 Contato
+### 📞 Contato
 	•	Autor: Rafael Caumo
 	•	LinkedIn: https://www.linkedin.com/in/rafaelcaumo/
 
-🔗 Referências
-	•	Desafio DevOps Let’s Code
+### 🔗 Referências
+	•  [Desafio DevOps Let’s Code](https://github.com/letscodebyada/desafio-devops)
