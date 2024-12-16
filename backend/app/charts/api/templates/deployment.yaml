@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.name }}
+    environment: {{ .Values.environment }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      annotations:
+        rollme: {{ randAlphaNum 6 | quote }}
+      labels:
+        app: {{ .Values.name }} 
+        environment: {{ .Values.environment }}
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+        - name: {{ .Values.name }}
+          image: {{ printf "%s:%s" .Values.image.repository .Values.image.version }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.name }}-config
+        {{- if .Values.deployment.enableHeathCheck }}
+          readinessProbe:
+            httpGet:
+              path: {{ .Values.deployment.healthCheckPath }}
+              port: container-port
+              scheme: HTTP
+            initialDelaySeconds: 200
+            periodSeconds: 10
+            successThreshold: 3
+            failureThreshold: 5
+            timeoutSeconds: 10
+          livenessProbe:  
+            httpGet:
+              path: {{ .Values.deployment.healthCheckPath }}
+              port: container-port
+              scheme: HTTP
+            initialDelaySeconds: 200
+            periodSeconds: 30
+            successThreshold: 1
+            failureThreshold: 3
+            timeoutSeconds: 10
+        {{- end }}
+          securityContext:
+            runAsUser: 1000
+            allowPrivilegeEscalation: false
+            capabilities:
+              add: ["NET_ADMIN", "SYS_TIME"]
+
+          ports:
+            - name: container-port
+              containerPort: {{ .Values.deployment.port }}          
+   
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: {{ .Values.deployment.resources.requests.memory }}
+              cpu: {{ .Values.deployment.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.deployment.resources.limits.memory }}
+              cpu: {{ .Values.deployment.resources.limits.cpu }}
+          volumeMounts:
+            - name: tz-config
+              mountPath: /etc/localtime
+        {{- if .Values.emptyDirs }}
+          {{- range .Values.emptyDirs }}
+            {{- $volumeName := .volumeName }}
+            {{- range $mountPath := .mountPaths }}
+            - name: {{ $volumeName }}
+              mountPath: {{ $mountPath }}
+            {{- end }}
+          {{- end }}
+        {{- end }}
+      volumes:
+        - name: tz-config
+          hostPath:
+            path: /usr/share/zoneinfo/America/Sao_Paulo
+    {{- if .Values.emptyDirs }}
+      {{- range .Values.emptyDirs }}
+        - name: {{ .volumeName }}
+          emptyDir: {}
+      {{- end }}
+    {{- end }}
