@@ -1,0 +1,1 @@
+INSERT IGNORE INTO usuario (username, password) VALUES ('ada-user', 'ada-senha');

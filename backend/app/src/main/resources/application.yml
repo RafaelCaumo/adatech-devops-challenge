@@ -2,17 +2,27 @@ spring:
   application:
     name: letscode-by-ada
   profiles: default, local, develop
+
   jpa:
     hibernate:
       ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL8Dialect
     properties:
       hibernate:
         show_sql: true
         format_sql: true
+
+  sql:
+    init:
+      mode: "always"
+
+  defer-datasource-initialization: true
+
   datasource:
     url: ${MYSQL_DB_HOST}
     username: ${MYSQL_DB_USER}
     password: ${MYSQL_DB_PASS}
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 security:
   oauth2:
