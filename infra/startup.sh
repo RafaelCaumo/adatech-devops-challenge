@@ -45,7 +45,7 @@ echo "✅ Variável ARM_SUBSCRIPTION_ID exportada para o Terraform."
 function create_backend() {
     echo "🚀 Criando backend para armazenar arquivos de estado..."
 
-    STORAGE_ACCOUNT_NAME="st${WORKLOAD}${ENVIRONMENT}$(shuf -i 1000-9999 -n 1)"
+    STORAGE_ACCOUNT_NAME="st${WORKLOAD}${ENVIRONMENT}$RANDOM"
     az group create --name "$RESOURCE_GROUP_NAME" --location "$REGION" --output none
     az storage account create --resource-group "$RESOURCE_GROUP_NAME" \
         --name "$STORAGE_ACCOUNT_NAME" --sku Standard_LRS --encryption-services blob --output none
