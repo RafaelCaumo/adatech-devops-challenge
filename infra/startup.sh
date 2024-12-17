@@ -37,6 +37,7 @@ SUBSCRIPTION_ID=$(az account show --query "id" -o tsv)
 echo "   - ID: $SUBSCRIPTION_ID"
 
 # Exporta a Subscription ID para o Terraform
+export RESOURCE_GROUP_NAME="$RESOURCE_GROUP_NAME"
 export ARM_SUBSCRIPTION_ID="$SUBSCRIPTION_ID"
 echo "✅ Variável ARM_SUBSCRIPTION_ID exportada para o Terraform."
 

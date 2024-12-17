@@ -103,7 +103,7 @@ source ./startup.sh
 
 ## 🌐 Acesso às Aplicações
 
-Os endpoints das aplicações serão exibidos nos outputs do Terraform após o provisionamento.
+O endpoints da aplicação sera exibido nos outputs do Terraform após o provisionamento.
 
 Exemplo de Saída:
 ``` bash
@@ -111,7 +111,23 @@ Outputs:
 frontend_address = "http://ada.development.<unique_id>.brazilsouth.aksapp.io"
 ```
 
+### Um usuário será criado quando a aplicação iniciar:
+
+User : `ada-user`
+Password: `ada-senha`
+
 ## 🔍 Monitoramento
+
+### Azure Managed Prometheus e Grafana
+
+O endpoints da aplicação sera exibido nos outputs do Terraform após o provisionamento.
+
+Exemplo de Saída:
+``` bash
+Outputs:
+grafana_address = "http://amg-letscode-prod.<unique_id>.sbr.grafana.azure.com"
+```
+### Azure Monitor
 
 O **Azure Monitor Agent** está configurado para enviar logs e métricas diretamente para o **Azure Monitor**.
 
@@ -121,6 +137,14 @@ O **Azure Monitor Agent** está configurado para enviar logs e métricas diretam
    1. **Insights**  
    2. **Logs**  
    3. **Metrics**
+
+## Destruindo os recursos
+
+``` bash
+cd ./infra 
+terraform destroy -auto-approve
+az group delete --name $RESOURCE_GROUP_NAME --yes
+```
 
 ## 📜 Licença
 
