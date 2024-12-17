@@ -74,7 +74,7 @@ az login
 ``` bash
 export SUBSCRIPTION_ID=<subscription_id>
 export STORAGE_ACCOUNT_NAME=<a-unique-name-here>
-export RESOURCE_GROUP_NAME="rg-tfstate-prod"
+export RESOURCE_GROUP_NAME="rg-tfstate-dev"
 ```
 
 3. Inicialização do Terraform

@@ -25,8 +25,8 @@ fi
 
 # Configurações do ambiente
 WORKLOAD="tfstate"
-ENVIRONMENT="prod"
-REGION="westeurope"
+ENVIRONMENT="dev"
+REGION="brazilsouth"
 RESOURCE_GROUP_NAME="rg-${WORKLOAD}-${ENVIRONMENT}-${REGION}"
 STORAGE_ACCOUNT_NAME=""
 CONTAINER_NAME="tfstate"

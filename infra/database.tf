@@ -1,5 +1,5 @@
 resource "azurerm_mysql_flexible_server" "mysql_server" {
-  name                  = "mysql-letscode-prod"
+  name                  = "mysql-letscode-dev"
   location              = azurerm_resource_group.main.location
   resource_group_name   = azurerm_resource_group.main.name
   version               = "8.0.21"
@@ -31,7 +31,7 @@ resource "azurerm_mysql_flexible_database" "mysql_database" {
 
 ## DB Network
 resource "azurerm_subnet" "mysql_subnet" {
-  name                 = "snet-mysql-letscode-prod"
+  name                 = "snet-mysql-letscode-dev"
   virtual_network_name = azurerm_virtual_network.main.name
   resource_group_name  = azurerm_resource_group.main.name
   address_prefixes     = ["10.1.30.0/24"]

@@ -1,5 +1,5 @@
 resource "azurerm_kubernetes_cluster" "k8s" {
-  name                = "aks-letscode-prod"
+  name                = "aks-letscode-dev"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   dns_prefix          = "aks-letscode"
@@ -26,6 +26,11 @@ resource "azurerm_kubernetes_cluster" "k8s" {
     network_policy = "azure"
   }
 
+  monitor_metrics {
+    annotations_allowed = null
+    labels_allowed      = null
+  }
+
   identity {
     type = "SystemAssigned"
   }
@@ -41,7 +46,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 
 ## K8S Network
 resource "azurerm_subnet" "k8s_subnet" {
-  name                 = "snet-k8s-letscode-prod"
+  name                 = "snet-k8s-letscode-dev"
   virtual_network_name = azurerm_virtual_network.main.name
   resource_group_name  = azurerm_resource_group.main.name
   address_prefixes     = ["10.1.40.0/24"]

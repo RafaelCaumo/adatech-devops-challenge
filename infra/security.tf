@@ -1,6 +1,6 @@
 # NSG para Subnets Públicas
 resource "azurerm_network_security_group" "public_nsg" {
-  name                = "nsg-public-letscode-prod"
+  name                = "nsg-public-letscode-dev"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 
@@ -33,7 +33,7 @@ resource "azurerm_network_security_group" "public_nsg" {
 
 # NSG para Subnets Privadas
 resource "azurerm_network_security_group" "private_nsg" {
-  name                = "nsg-private-letscode-prod"
+  name                = "nsg-private-letscode-dev"
   location            = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
 

@@ -1,4 +1,4 @@
 resource "azurerm_resource_group" "main" {
-  name     = "rg-letscode-prod-westeurope"
+  name     = "rg-letscode-dev-brazilsouth"
   location = "brazilsouth"
 }

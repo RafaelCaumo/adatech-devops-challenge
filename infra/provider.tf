@@ -1,3 +1,4 @@
+data "azurerm_client_config" "main" {}
 
 terraform {
   required_providers {
